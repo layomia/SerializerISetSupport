@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>System.Text.Json.Serialization.Tests.WriteJson_IndexViewModel_</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.3.1003-nightly, OS=Windows 10.0.17763.503 (1809/October2018Update/Redstone5)
+Intel Core i7-7700 CPU 3.60GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.0.100-preview6-012121
+  [Host]     : .NET Core 3.0.0-preview6-27729-05 (CoreCLR 4.700.19.27901, CoreFX 4.700.19.27903), 64bit RyuJIT
+  Job-HOVVPS : .NET Core ? (CoreCLR 4.700.19.30102, CoreFX 4.700.19.30301), 64bit RyuJIT
+</code></pre>
+<pre><code>Runtime=Core  Toolchain=CoreRun  IterationTime=250.0000 ms  
+MaxIterationCount=20  MinIterationCount=15  WarmupCount=1  
+</code></pre>
+
+<table>
+<thead><tr><th>        Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Min</th><th>Max</th><th>Gen 0/1k Op</th><th>Gen 1/1k Op</th><th>Gen 2/1k Op</th><th>Allocated Memory/Op</th>
+</tr>
+</thead><tbody><tr><td>SerializeToString</td><td>40.96 us</td><td>3.0479 us</td><td>3.2612 us</td><td>39.36 us</td><td>37.89 us</td><td>48.07 us</td><td>6.2197</td><td>0.4551</td><td>-</td><td>26816 B</td>
+</tr><tr><td>SerializeToUtf8Bytes</td><td>36.32 us</td><td>0.4098 us</td><td>0.3833 us</td><td>36.36 us</td><td>35.77 us</td><td>37.19 us</td><td>3.1465</td><td>0.1430</td><td>-</td><td>13656 B</td>
+</tr><tr><td>SerializeToStream</td><td>35.09 us</td><td>0.2430 us</td><td>0.2273 us</td><td>35.08 us</td><td>34.82 us</td><td>35.58 us</td><td>-</td><td>-</td><td>-</td><td>464 B</td>
+</tr></tbody></table>
+</body>
+</html>

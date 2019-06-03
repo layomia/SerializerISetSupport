@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>System.Text.Json.Serialization.Tests.WriteDictionary</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.3.1003-nightly, OS=Windows 10.0.17763.503 (1809/October2018Update/Redstone5)
+Intel Core i7-7700 CPU 3.60GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.0.100-preview6-012121
+  [Host]     : .NET Core 3.0.0-preview6-27729-05 (CoreCLR 4.700.19.27901, CoreFX 4.700.19.27903), 64bit RyuJIT
+  Job-HOVVPS : .NET Core ? (CoreCLR 4.700.19.30102, CoreFX 4.700.19.30301), 64bit RyuJIT
+</code></pre>
+<pre><code>Runtime=Core  Toolchain=CoreRun  IterationTime=250.0000 ms  
+MaxIterationCount=20  MinIterationCount=15  WarmupCount=1  
+</code></pre>
+
+<table>
+<thead><tr><th>                         Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th> Min</th><th> Max</th><th>Gen 0/1k Op</th><th>Gen 1/1k Op</th><th>Gen 2/1k Op</th><th>Allocated Memory/Op</th>
+</tr>
+</thead><tbody><tr><td>SerializeDict_ToUtf8Bytes</td><td>847.9 ns</td><td>23.728 ns</td><td>27.325 ns</td><td>844.0 ns</td><td>818.0 ns</td><td>914.9 ns</td><td>0.0947</td><td>-</td><td>-</td><td>400 B</td>
+</tr><tr><td>SerializeIDict_ToUtf8Bytes</td><td>827.3 ns</td><td>8.392 ns</td><td>7.007 ns</td><td>829.8 ns</td><td>811.5 ns</td><td>834.3 ns</td><td>0.0926</td><td>-</td><td>-</td><td>400 B</td>
+</tr><tr><td>SerializeIReadOnlyDict_ToUtf8Bytes</td><td>840.1 ns</td><td>4.493 ns</td><td>4.202 ns</td><td>839.0 ns</td><td>832.4 ns</td><td>850.3 ns</td><td>0.0935</td><td>-</td><td>-</td><td>400 B</td>
+</tr><tr><td>SerializeDict_ToString</td><td>836.0 ns</td><td>11.850 ns</td><td>10.505 ns</td><td>835.9 ns</td><td>813.2 ns</td><td>855.7 ns</td><td>0.1004</td><td>-</td><td>-</td><td>432 B</td>
+</tr><tr><td>SerializeIDict_ToString</td><td>836.4 ns</td><td>21.009 ns</td><td>23.351 ns</td><td>829.1 ns</td><td>811.9 ns</td><td>885.9 ns</td><td>0.1015</td><td>-</td><td>-</td><td>432 B</td>
+</tr><tr><td>SerializeIReadOnlyDict_ToString</td><td>876.3 ns</td><td>44.370 ns</td><td>51.096 ns</td><td>876.8 ns</td><td>822.3 ns</td><td>969.4 ns</td><td>0.1026</td><td>-</td><td>-</td><td>432 B</td>
+</tr><tr><td>SerializeImmutableDict_ToBytes</td><td>1,697.7 ns</td><td>77.688 ns</td><td>86.350 ns</td><td>1,707.6 ns</td><td>1,579.9 ns</td><td>1,899.8 ns</td><td>0.1795</td><td>-</td><td>-</td><td>752 B</td>
+</tr><tr><td>SerializeIImmutableDict_ToBytes</td><td>1,627.2 ns</td><td>24.549 ns</td><td>21.762 ns</td><td>1,625.1 ns</td><td>1,594.5 ns</td><td>1,676.8 ns</td><td>0.1741</td><td>-</td><td>-</td><td>752 B</td>
+</tr><tr><td>SerializeImmutableSortedDict_ToBytes</td><td>1,458.5 ns</td><td>77.581 ns</td><td>76.195 ns</td><td>1,429.4 ns</td><td>1,396.6 ns</td><td>1,641.9 ns</td><td>0.1525</td><td>-</td><td>-</td><td>656 B</td>
+</tr><tr><td>SerializeImmutableDict_ToString</td><td>1,659.2 ns</td><td>13.649 ns</td><td>12.099 ns</td><td>1,655.5 ns</td><td>1,645.2 ns</td><td>1,685.0 ns</td><td>0.1866</td><td>-</td><td>-</td><td>784 B</td>
+</tr><tr><td>SerializeIImmutableDict_ToString</td><td>1,654.4 ns</td><td>17.178 ns</td><td>14.344 ns</td><td>1,656.4 ns</td><td>1,631.5 ns</td><td>1,687.4 ns</td><td>0.1853</td><td>-</td><td>-</td><td>784 B</td>
+</tr><tr><td>SerializeImmutableSortedDict_ToString</td><td>1,370.1 ns</td><td>8.699 ns</td><td>7.712 ns</td><td>1,367.9 ns</td><td>1,358.7 ns</td><td>1,384.3 ns</td><td>0.1634</td><td>-</td><td>-</td><td>688 B</td>
+</tr></tbody></table>
+</body>
+</html>

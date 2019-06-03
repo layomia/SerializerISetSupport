@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>System.Text.Json.Serialization.Tests.ReadDictionary</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.3.1003-nightly, OS=Windows 10.0.17763.503 (1809/October2018Update/Redstone5)
+Intel Core i7-7700 CPU 3.60GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.0.100-preview6-012121
+  [Host]     : .NET Core 3.0.0-preview6-27729-05 (CoreCLR 4.700.19.27901, CoreFX 4.700.19.27903), 64bit RyuJIT
+  Job-HOVVPS : .NET Core ? (CoreCLR 4.700.19.30102, CoreFX 4.700.19.30301), 64bit RyuJIT
+</code></pre>
+<pre><code>Runtime=Core  Toolchain=CoreRun  IterationTime=250.0000 ms  
+MaxIterationCount=20  MinIterationCount=15  WarmupCount=1  
+</code></pre>
+
+<table>
+<thead><tr><th>                  Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th> Min</th><th> Max</th><th>Gen 0/1k Op</th><th>Gen 1/1k Op</th><th>Gen 2/1k Op</th><th>Allocated Memory/Op</th>
+</tr>
+</thead><tbody><tr><td>DeserializeDict</td><td>760.4 ns</td><td>29.023 ns</td><td>33.423 ns</td><td>759.5 ns</td><td>722.5 ns</td><td>836.8 ns</td><td>0.0971</td><td>-</td><td>-</td><td>416 B</td>
+</tr><tr><td>DeserializeIDict</td><td>735.2 ns</td><td>8.502 ns</td><td>7.953 ns</td><td>734.6 ns</td><td>727.0 ns</td><td>756.2 ns</td><td>0.0981</td><td>-</td><td>-</td><td>416 B</td>
+</tr><tr><td>DeserializeIReadOnlyDict</td><td>732.7 ns</td><td>5.217 ns</td><td>4.624 ns</td><td>732.8 ns</td><td>725.6 ns</td><td>743.9 ns</td><td>0.0974</td><td>-</td><td>-</td><td>416 B</td>
+</tr><tr><td>DeserializeImmutableDict</td><td>1,825.4 ns</td><td>24.206 ns</td><td>22.642 ns</td><td>1,825.1 ns</td><td>1,800.5 ns</td><td>1,875.2 ns</td><td>0.2454</td><td>-</td><td>-</td><td>1048 B</td>
+</tr><tr><td>DeserializeIImmutableDict</td><td>1,822.6 ns</td><td>21.718 ns</td><td>18.136 ns</td><td>1,822.8 ns</td><td>1,791.7 ns</td><td>1,853.5 ns</td><td>0.2494</td><td>-</td><td>-</td><td>1048 B</td>
+</tr><tr><td>DeserializeImmutableSortedDict</td><td>2,160.8 ns</td><td>41.677 ns</td><td>46.323 ns</td><td>2,169.2 ns</td><td>2,094.4 ns</td><td>2,253.0 ns</td><td>0.3666</td><td>-</td><td>-</td><td>1544 B</td>
+</tr></tbody></table>
+</body>
+</html>
