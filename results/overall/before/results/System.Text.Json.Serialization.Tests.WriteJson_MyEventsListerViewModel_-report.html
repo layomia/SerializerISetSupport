@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>System.Text.Json.Serialization.Tests.WriteJson_MyEventsListerViewModel_</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.3.1003-nightly, OS=Windows 10.0.17763.503 (1809/October2018Update/Redstone5)
+Intel Core i7-7700 CPU 3.60GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.0.100-preview6-012121
+  [Host]     : .NET Core 3.0.0-preview6-27729-05 (CoreCLR 4.700.19.27901, CoreFX 4.700.19.27903), 64bit RyuJIT
+  Job-TIAMPF : .NET Core ? (CoreCLR 4.700.19.27904, CoreFX 4.700.19.30301), 64bit RyuJIT
+</code></pre>
+<pre><code>Runtime=Core  Toolchain=CoreRun  IterationTime=250.0000 ms  
+MaxIterationCount=20  MinIterationCount=15  WarmupCount=1  
+</code></pre>
+
+<table>
+<thead><tr><th>        Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Min</th><th>Max</th><th>Gen 0/1k Op</th><th>Gen 1/1k Op</th><th>Gen 2/1k Op</th><th>Allocated Memory/Op</th>
+</tr>
+</thead><tbody><tr><td>SerializeToString</td><td>693.4 us</td><td>10.51 us</td><td>9.313 us</td><td>694.5 us</td><td>678.7 us</td><td>710.1 us</td><td>98.2143</td><td>49.1071</td><td>49.1071</td><td>392.52 KB</td>
+</tr><tr><td>SerializeToUtf8Bytes</td><td>679.4 us</td><td>20.52 us</td><td>21.960 us</td><td>673.1 us</td><td>658.3 us</td><td>734.5 us</td><td>75.8929</td><td>13.3929</td><td>-</td><td>312.7 KB</td>
+</tr><tr><td>SerializeToStream</td><td>657.0 us</td><td>37.78 us</td><td>38.795 us</td><td>640.2 us</td><td>621.5 us</td><td>744.6 us</td><td>53.5714</td><td>-</td><td>-</td><td>232.81 KB</td>
+</tr></tbody></table>
+</body>
+</html>
