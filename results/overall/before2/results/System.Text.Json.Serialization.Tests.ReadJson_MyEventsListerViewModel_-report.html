@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>System.Text.Json.Serialization.Tests.ReadJson_MyEventsListerViewModel_</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.3.1003-nightly, OS=Windows 10.0.18362
+Intel Core i7-7820HQ CPU 2.90GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.0.100-preview6-012162
+  [Host]     : .NET Core 3.0.0-preview6-27730-01 (CoreCLR 4.700.19.28001, CoreFX 4.700.19.27908), 64bit RyuJIT
+  Job-DRWCLL : .NET Core ? (CoreCLR 4.700.19.30201, CoreFX 4.700.19.30401), 64bit RyuJIT
+</code></pre>
+<pre><code>Runtime=Core  Toolchain=CoreRun  IterationTime=250.0000 ms  
+MaxIterationCount=20  MinIterationCount=15  WarmupCount=1  
+</code></pre>
+
+<table>
+<thead><tr><th>            Method</th><th>Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Min</th><th>Max</th><th>Gen 0/1k Op</th><th>Gen 1/1k Op</th><th>Gen 2/1k Op</th><th>Allocated Memory/Op</th>
+</tr>
+</thead><tbody><tr><td>DeserializeFromString</td><td>528.3 us</td><td>10.165 us</td><td>9.983 us</td><td>531.9 us</td><td>515.6 us</td><td>540.2 us</td><td>35.6394</td><td>10.4822</td><td>-</td><td>153.72 KB</td>
+</tr><tr><td>DeserializeFromUtf8Bytes</td><td>503.7 us</td><td>6.768 us</td><td>6.000 us</td><td>501.4 us</td><td>495.9 us</td><td>515.6 us</td><td>16.3599</td><td>4.0900</td><td>-</td><td>74.46 KB</td>
+</tr><tr><td>DeserializeFromStream</td><td>635.6 us</td><td>6.178 us</td><td>5.779 us</td><td>636.9 us</td><td>616.4 us</td><td>640.5 us</td><td>17.8571</td><td>5.1020</td><td>-</td><td>74.53 KB</td>
+</tr></tbody></table>
+</body>
+</html>
