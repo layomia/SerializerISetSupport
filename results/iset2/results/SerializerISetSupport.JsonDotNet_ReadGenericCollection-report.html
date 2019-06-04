@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>SerializerISetSupport.JsonDotNet_ReadGenericCollection-20190604-112333</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18362
+Intel Core i7-7820HQ CPU 2.90GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.0.100-preview6-012162
+  [Host]     : .NET Core 3.0.0-preview6-27730-01 (CoreCLR 4.700.19.28001, CoreFX 4.700.19.27908), 64bit RyuJIT
+  Job-TUSYED : .NET Core ? (CoreCLR 4.700.19.30201, CoreFX 4.700.19.30401), 64bit RyuJIT
+</code></pre>
+<pre><code>Runtime=Core  Toolchain=CoreRun  
+</code></pre>
+
+<table>
+<thead><tr><th>         Method</th><th>ElementCount</th><th> Mean</th><th>Error</th><th>StdDev</th><th>Median</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>DeserializeISet</td><td>2</td><td>21,030.9 ns</td><td>3,649.67 ns</td><td>10,412.72 ns</td><td>17,650.0 ns</td><td>-</td><td>-</td><td>-</td><td>2.84 KB</td>
+</tr><tr><td>SerializeISet_ToBytes</td><td>2</td><td>542.6 ns</td><td>10.85 ns</td><td>23.35 ns</td><td>536.1 ns</td><td>0.3328</td><td>-</td><td>-</td><td>1.36 KB</td>
+</tr><tr><td>DeserializeISet</td><td>50</td><td>9,447.0 ns</td><td>188.40 ns</td><td>224.27 ns</td><td>9,434.3 ns</td><td>1.9073</td><td>-</td><td>-</td><td>7.85 KB</td>
+</tr><tr><td>SerializeISet_ToBytes</td><td>50</td><td>4,475.9 ns</td><td>86.77 ns</td><td>72.46 ns</td><td>4,493.8 ns</td><td>0.6943</td><td>-</td><td>-</td><td>2.85 KB</td>
+</tr><tr><td>DeserializeISet</td><td>100</td><td>18,215.9 ns</td><td>70.56 ns</td><td>62.55 ns</td><td>18,209.3 ns</td><td>3.3264</td><td>-</td><td>-</td><td>13.7 KB</td>
+</tr><tr><td>SerializeISet_ToBytes</td><td>100</td><td>8,535.8 ns</td><td>70.04 ns</td><td>65.51 ns</td><td>8,553.2 ns</td><td>1.1902</td><td>-</td><td>-</td><td>4.9 KB</td>
+</tr></tbody></table>
+</body>
+</html>

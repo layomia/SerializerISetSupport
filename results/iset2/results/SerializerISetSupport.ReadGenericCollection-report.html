@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+<meta charset='utf-8' />
+<title>SerializerISetSupport.ReadGenericCollection-20190604-112529</title>
+
+<style type="text/css">
+	table { border-collapse: collapse; display: block; width: 100%; overflow: auto; }
+	td, th { padding: 6px 13px; border: 1px solid #ddd; }
+	tr { background-color: #fff; border-top: 1px solid #ccc; }
+	tr:nth-child(even) { background: #f8f8f8; }
+</style>
+</head>
+<body>
+<pre><code>
+BenchmarkDotNet=v0.11.5, OS=Windows 10.0.18362
+Intel Core i7-7820HQ CPU 2.90GHz (Kaby Lake), 1 CPU, 8 logical and 4 physical cores
+.NET Core SDK=3.0.100-preview6-012162
+  [Host]     : .NET Core 3.0.0-preview6-27730-01 (CoreCLR 4.700.19.28001, CoreFX 4.700.19.27908), 64bit RyuJIT
+  Job-TUSYED : .NET Core ? (CoreCLR 4.700.19.30201, CoreFX 4.700.19.30401), 64bit RyuJIT
+</code></pre>
+<pre><code>Runtime=Core  Toolchain=CoreRun  
+</code></pre>
+
+<table>
+<thead><tr><th>         Method</th><th>ElementCount</th><th> Mean</th><th>Error</th><th>StdDev</th><th>Gen 0</th><th>Gen 1</th><th>Gen 2</th><th>Allocated</th>
+</tr>
+</thead><tbody><tr><td>DeserializeISet</td><td>2</td><td>2,114.5 ns</td><td>41.533 ns</td><td>44.440 ns</td><td>0.2747</td><td>-</td><td>-</td><td>1160 B</td>
+</tr><tr><td>SerializeISet_ToBytes</td><td>2</td><td>507.2 ns</td><td>5.404 ns</td><td>4.791 ns</td><td>0.0591</td><td>-</td><td>-</td><td>248 B</td>
+</tr><tr><td>DeserializeISet</td><td>50</td><td>11,712.8 ns</td><td>252.800 ns</td><td>346.035 ns</td><td>1.8616</td><td>-</td><td>-</td><td>7817 B</td>
+</tr><tr><td>SerializeISet_ToBytes</td><td>50</td><td>5,993.0 ns</td><td>106.807 ns</td><td>99.907 ns</td><td>0.2823</td><td>-</td><td>-</td><td>1192 B</td>
+</tr><tr><td>DeserializeISet</td><td>100</td><td>21,081.3 ns</td><td>124.253 ns</td><td>103.757 ns</td><td>3.6621</td><td>-</td><td>-</td><td>15353 B</td>
+</tr><tr><td>SerializeISet_ToBytes</td><td>100</td><td>11,535.3 ns</td><td>173.335 ns</td><td>135.328 ns</td><td>0.5188</td><td>-</td><td>-</td><td>2192 B</td>
+</tr></tbody></table>
+</body>
+</html>
